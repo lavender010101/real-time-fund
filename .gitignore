@@ -81,3 +81,4 @@ fabric.properties
 /.next/
 
 .env.local
+.DS_Store
