@@ -19,6 +19,7 @@ import AddFundToGroupModal from "./components/modals/AddFundToGroupModal";
 import GroupModal from "./components/modals/GroupModal";
 import PositionModal from "./components/modals/PositionModal";
 import FundListView from "./components/FundListView";
+import PortfolioSummary from "./components/PortfolioSummary";
 import { fetchFundData } from "./lib/fundApi";
 import { useFunds } from "./hooks/useFunds";
 import { useFundSearch } from "./hooks/useFundSearch";
@@ -470,6 +471,7 @@ export default function HomePage() {
             onOpenGroupManage={() => setGroupManageOpen(true)}
             onOpenGroupModal={() => setGroupModalOpen(true)}
           />
+          <PortfolioSummary funds={displayFunds} positions={positions} />
 
           {displayFunds.length === 0 ? (
             <div className="glass card empty" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '60px 20px' }}>
