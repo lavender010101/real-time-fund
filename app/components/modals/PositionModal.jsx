@@ -1,8 +1,9 @@
-'use client';
+ 'use client';
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { FolderPlusIcon, CloseIcon } from '../Icons';
+import GlassDatePicker from '../GlassDatePicker';
 
 export default function PositionModal({ fund, position, onClose, onSave }) {
   const [mode, setMode] = useState(position && position.shares > 0 ? 'trade' : 'reset');
@@ -300,11 +301,9 @@ export default function PositionModal({ fund, position, onClose, onSave }) {
                 >
                   交易日期
                 </label>
-                <input
-                  className="input"
-                  type="date"
+                <GlassDatePicker
                   value={date}
-                  onChange={(e) => setDate(e.target.value)}
+                  onChange={setDate}
                 />
               </div>
             </>
@@ -351,11 +350,9 @@ export default function PositionModal({ fund, position, onClose, onSave }) {
                 >
                   最近交易日
                 </label>
-                <input
-                  className="input"
-                  type="date"
+                <GlassDatePicker
                   value={resetDate}
-                  onChange={(e) => setResetDate(e.target.value)}
+                  onChange={setResetDate}
                 />
               </div>
               <div className="form-group" style={{ marginBottom: 12 }}>
