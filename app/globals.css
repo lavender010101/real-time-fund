@@ -349,6 +349,14 @@ body {
   gap: 8px;
 }
 
+.navbar-actions-desktop {
+  display: inline-flex;
+}
+
+.navbar-actions-mobile {
+  display: none;
+}
+
 .icon-button {
   width: 36px;
   height: 36px;
@@ -666,6 +674,148 @@ body {
   border-color: var(--accent);
   box-shadow: 0 0 0 3px rgba(96,165,250,0.15);
   cursor: default;
+}
+
+.navbar-mobile-overlay {
+  position: fixed;
+  height: 100vh;
+  inset: 0;
+  background: rgba(2, 6, 23, 0.6);
+  backdrop-filter: blur(8px);
+  z-index: 70;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.navbar-mobile-drawer {
+  width: 45%;
+  max-width: 320px;
+  height: 100%;
+  padding: 16px 14px 24px 14px;
+  border-radius: 16px 0 0 16px;
+  border-left: 1px solid var(--border);
+  /* 延续 .glass 渐变，只调整阴影方向与强度，使其更自然 */
+  box-shadow: -10px 0 28px rgba(15, 23, 42, 0.55);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  position: relative;
+  overflow: hidden;
+}
+
+.navbar-mobile-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  overflow-y: auto;
+  padding-bottom: 16px; /* 默认底部间距 */
+}
+
+/* 当存在账号区域时，增加底部 padding 避免被遮挡 */
+.navbar-mobile-drawer:has(.navbar-mobile-account) .navbar-mobile-main {
+  padding-bottom: 80px;
+}
+
+.navbar-mobile-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--text);
+  font-size: 14px;
+  cursor: pointer;
+  text-align: left;
+  transition: background-color 0.15s ease, border-color 0.15s ease, transform 0.1s ease;
+}
+
+.navbar-mobile-item:hover {
+  background: rgba(255, 255, 255, 0.03);
+  border-color: var(--border);
+  transform: translateY(-1px);
+}
+
+.navbar-mobile-badge .badge {
+  width: 100%;
+  justify-content: space-between;
+}
+
+.navbar-mobile-sync {
+  font-size: 12px;
+  color: var(--muted);
+  margin-bottom: 6px;
+  padding: 6px 10px;
+  border-radius: 10px;
+  border: 1px solid rgba(148, 163, 184, 0.4); /* 接近 muted 色，弱化边框 */
+  background: rgba(15, 23, 42, 0.7);
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 6px 10px;
+  line-height: 1.5;
+  white-space: normal;
+  word-break: break-word;
+}
+
+/* 抽屉内的 SyncStatus 根节点：改为纵向排布，避免内容在一行中被挤压 */
+.navbar-mobile-sync > div {
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 4px;
+  width: 100%;
+}
+
+/* 抽屉内的链接按钮去掉左侧额外间距，避免拥挤 */
+.navbar-mobile-sync .link-button {
+  margin-left: 0 !important;
+}
+
+/* 抽屉底部的账号信息区域 */
+.navbar-mobile-account {
+  position: absolute;
+  left: 14px;
+  right: 14px;
+  bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: rgba(15, 23, 42, 0.9);
+  font-size: 13px;
+}
+
+.navbar-mobile-account .muted {
+  font-size: 11px;
+}
+
+.navbar-mobile-account strong {
+  font-size: 14px;
+}
+
+/* 移动端同步状态中隐藏账号下拉按钮和其弹出层，避免与底部账号信息重复 */
+@media (max-width: 640px) {
+  .navbar-mobile-sync .link-button[title="账号菜单"],
+  .navbar-mobile-sync .glass.card {
+    display: none !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .navbar-actions-desktop {
+    display: none;
+  }
+
+  .navbar-actions-mobile {
+    display: inline-flex;
+  }
 }
 @media (prefers-reduced-motion: reduce) {
   .spin {

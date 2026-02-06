@@ -377,6 +377,7 @@ export default function HomePage() {
         onManualRefresh={manualRefresh}
         onOpenSettings={() => setSettingsOpen(true)}
         syncStatus={<SyncStatus onOpenAuth={() => setAuthModalOpen(true)} />}
+        onOpenAuth={() => setAuthModalOpen(true)}
       />
 
       <div className="grid">
