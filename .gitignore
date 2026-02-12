@@ -82,3 +82,7 @@ fabric.properties
 
 .env.local
 .DS_Store
+
+.vercel
+.trae
+.idea 
